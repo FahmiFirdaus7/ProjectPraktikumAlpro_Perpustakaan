@@ -10,7 +10,7 @@ using namespace std;
 // Bagian Pustakawan
 void loginPustakawan();
 void menuPustakawan();
-void menuPengunjung();
+
 
 // Bagian Pengunjung
 int signInPengunjung();
