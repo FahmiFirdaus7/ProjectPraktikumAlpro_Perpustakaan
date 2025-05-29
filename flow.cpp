@@ -27,6 +27,7 @@ void lihatDataBuku();
 void pinjamBuku();
 void lihatDataBukuTahunTerbit();
 void lihatDataBukuJudul();
+void lihhatDataBukuID();
 
 // Bagian Data Diri Pengunjung
 void lihatDataDiri();
@@ -36,6 +37,7 @@ void sequentialTahun(int cariTahun);
 void sequentialPengarang(string cariPengarang);
 void ShellSort(int n);
 void BubbleSortString(int n);
+void quickSort(buku data_buku[], int low, int high);
 void MasukkanDataKeFile(const string &namafile);
 void SalinDatadariFilekeArray(const string &namafile);
 
@@ -409,6 +411,9 @@ void lihatDataBuku()
     cout << "\nUrutkan Berdasarkan: \n";
     cout << "1. Judul" << endl;
     cout << "2. Tahun Terbit" << endl;
+    cout << "3. ID Buku "<<endl;
+    cout << "4. Kembali ke Menu Utama" << endl;
+    cout << "Pilih opsi: ";
     cin >> pilihan;
 
     switch (pilihan)
@@ -418,6 +423,12 @@ void lihatDataBuku()
         break;
     case 2:
         lihatDataBukuTahunTerbit();
+        break;
+    case 3:
+        lihhatDataBukuID();
+        break;
+    case 4:
+        cout << "Kembali ke menu utama.\n";
         break;
     default:
         break;
@@ -468,6 +479,25 @@ void lihatDataBukuJudul()
     }
 }
 
+void lihatDataBukuID(){
+    system("cls");
+    cout << "====== Daftar Buku Berdasarkan ID ======" << endl;
+    int n = 50;
+    quickSort(data_buku, 1, n);
+    for (int i = 1; i <= n; i++)
+    {
+        if (data_buku[i].idBuku != 0)
+        {
+            cout << "ID Buku: " << data_buku[i].idBuku << endl;
+            cout << "Judul: " << data_buku[i].judul << endl;
+            cout << "Tahun Terbit: " << data_buku[i].tahunTerbit << endl;
+            cout << "Pengarang: " << data_buku[i].pengarang << endl;
+            cout << "Penerbit: " << data_buku[i].penerbit << endl;
+            cout << endl;
+        }
+    }
+
+}
 // Cari Buku
 void CariBuku()
 {
@@ -563,6 +593,7 @@ void lihatDataDiri()
     cout << "Alamat       : " << alamat << endl;
     cout << "No. Telepon  : " << no_telp << endl;
     cout << "Email        : " << email << endl;
+
     cout << "\nTekan enter untuk kembali...";
     cin.ignore();
     cin.get();
@@ -703,5 +734,27 @@ void BubbleSortString(int n)
                 swap(data_buku[j], data_buku[j + 1]);
             }
         }
+    }
+}
+
+void quickSort(buku arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pivot = arr[high].idBuku;
+        int i = (low - 1);
+        for (int j = low; j < high; j++)
+        {
+            if (arr[j].idBuku < pivot)
+            {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        swap(arr[i + 1], arr[high]);
+        int pi = i + 1;
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
     }
 }
