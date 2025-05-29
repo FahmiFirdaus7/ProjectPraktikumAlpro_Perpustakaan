@@ -37,7 +37,7 @@ void sequentialTahun(int cariTahun);
 void sequentialPengarang(string cariPengarang);
 void ShellSort(int n);
 void BubbleSortString(int n);
-void quickSort(buku data_buku[], int low, int high);
+// void quickSort(buku data_buku[], int low, int high);
 void MasukkanDataKeFile(const string &namafile);
 void SalinDatadariFilekeArray(const string &namafile);
 
